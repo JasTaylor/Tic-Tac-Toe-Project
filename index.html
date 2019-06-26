@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>Tic Tac Toe</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-
       <!-- Do not add `link` tags-->
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
@@ -11,7 +10,91 @@
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
-    <body>
-      <h1>Browser Template</h1>
-    </body>
-</html>
+    <body class="container">
+    <h1>Tic Tac Toe!</h1>
+    <div class="topOfPage">
+    <nav>
+    <ul>
+    <li><a href="#changepassword">Change Password</a></li>
+    <li><a href="#signout">Sign Out</a></li>
+  </ul>
+  </nav>
+  <p>These are the directions to tic tac toe</p>
+    <h3 id="message"></h3>
+  <div class="row">
+  <form id="sign-up" class="col-md-6 mb-5">
+  <h2>Sign Up</h2>
+  <input class="form-control mb-2" type="email" name="credentials[email]" placeholder="Email">
+  <input class="form-control mb-2" type="password" name="credentials[password]" placeholder="Password">
+  <input class="form-control mb-2" type="password" name="credentials[password_confirmation]" placeholder="Password Confirmation">
+  <button class="btn btn-primary" type="submit">Sign Up!</button>
+</form>
+
+<form id="sign-in" class="col-md-7">
+  <h2>Sign In</h2>
+  <input class="form-control mb-2" type="email" name="credentials[email]" placeholder="Email">
+  <input class="form-control mb-2" type="password" name="credentials[password]" placeholder="Password">
+  <button class="btn btn-primary" type="submit">Please Sign In!</button>
+</form>
+
+</div>
+
+<form id="changePassword" class="col-md-6 mb-5">
+  <div class="row">
+<h2>Change Password</h2>
+  <input class="form-control mb-2" type="password" name="passwords[old]" placeholder="Old Password">
+  <input class="form-control mb-2" type="password" name="passwords[new]" placeholder="New Password">
+  <button class="btn btn-primary" type="submit">Change Password</button>
+</div>
+</form>
+
+<form id="sign-out">
+  <h2>Sign Out</h2>
+  <button type="submit">Sign Out</button>
+</form>
+
+  </div>
+
+  <div class="container">
+    <form>
+            <div class="row">
+              <div class="col-4 mb-8 box alt-color"></div>
+              <div class="col-4 mb-8 box alt-color"></div>
+              <div class="col-4 mb-8 box alt-color"></div>
+              <div class="col-4 mb-8 box alt-color"></div>
+              <div class="col-4 mb-8 box alt-color"></div>
+              <div class="col-4 mb-8 box alt-color"></div>
+              <div class="col-4 mb-8 box alt-color"></div>
+              <div class="col-4 mb-8 box alt-color"></div>
+              <div class="col-4 mb-8 box alt-color"></div>
+            </div>
+  <button class="btn btn-primary" type="submit">New Game</button>
+  <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+  </form>
+            </div>
+  </body>
+  </html>

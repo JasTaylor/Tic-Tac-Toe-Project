@@ -1,1 +1,32 @@
 @import '~bootstrap/scss/bootstrap';
+
+.border {
+  border: 3px solid $black;
+  margin: 20px;
+  padding: 20px;
+}
+
+.success {
+  background-color: #080;
+}
+
+.failure {
+  background-color: #F00;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  padding: 8px;
+  background-color: #dddddd;
+}
