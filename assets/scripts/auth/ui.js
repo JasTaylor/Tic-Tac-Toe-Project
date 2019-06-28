@@ -6,6 +6,13 @@ const successMessage = message => {
   $('#message').removeClass('failure')
   $('#message').addClass('success')
   // to clear out our forms
+  $('#changePassword').removeClass('hide')
+  $('#sign-out').removeClass('hide')
+  $('#game').removeClass('hide')
+  $('[data-id]').removeClass('hide')
+  $('#newgame-buttons').removeClass('hide')
+  $('#sign-up').addClass('hide')
+  $('#sign-in').addClass('hide')
   $('form').trigger('reset')
 }
 const failureMessage = message => {
@@ -49,10 +56,10 @@ const signOutFailure = () => {
 }
 const createGameSuccessful = (responseData) => {
   store.game = responseData.game
-  store.user.token = responseData.user
-  console.log('store is', store)
+  store.over = false
+  console.log('game created somehow')
+  console.log(store)
   $('#message').text('New Game!')
-  $('#message').removeClass()
   $('#message').addClass('success')
 }
 const createGameFailure = () => {

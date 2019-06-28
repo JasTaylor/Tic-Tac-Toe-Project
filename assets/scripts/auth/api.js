@@ -51,11 +51,20 @@ const createGame = function (data) {
     }
   })
 }
-
+const updateGame = data => {
+  // console.log('updateGame')
+  return $.ajax({
+    url: config.apiUrl + `/games/ + ${store.game.id}`, // id is supposed to represent current game ID
+    headers: {Authorization: `Token token=${store.user.token}`},
+    method: 'PATCH',
+    data: data
+  })
+}
 module.exports = {
   signUp,
   signIn,
   changePassword,
   signOut,
-  createGame
+  createGame,
+  updateGame
 }

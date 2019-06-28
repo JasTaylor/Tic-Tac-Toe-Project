@@ -11,16 +11,14 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body class="container">
+
+<div class="topOfPage">
     <h1>Tic Tac Toe!</h1>
-    <div class="topOfPage">
-    <nav>
-    <ul>
-    <li><a href="#changepassword">Change Password</a></li>
-    <li><a href="#signout">Sign Out</a></li>
-  </ul>
-  </nav>
   <p>These are the directions to tic tac toe</p>
     <h3 id="message"></h3>
+  </div>
+
+
   <div class="row">
   <form id="sign-up" class="col-md-6 mb-5">
   <h2>Sign Up</h2>
@@ -36,10 +34,9 @@
   <input class="form-control mb-2" type="password" name="credentials[password]" placeholder="Password">
   <button class="btn btn-primary" type="submit">Please Sign In!</button>
 </form>
-
 </div>
 
-<form id="changePassword" class="col-md-6 mb-5">
+<form id="changePassword" class="col-md-6 mb-5 hide">
   <div class="row">
 <h2>Change Password</h2>
   <input class="form-control mb-2" type="password" name="passwords[old]" placeholder="Old Password">
@@ -48,7 +45,7 @@
 </div>
 </form>
 
-<form id="sign-out">
+<form id="sign-out" class="hide">
   <h2>Sign Out</h2>
   <button type="submit">Sign Out</button>
 </form>
@@ -56,9 +53,10 @@
   </div>
 <br></br>
   <div class="container">
+
+      <button id="newgame-buttons" class="btn btn-primary hide">New Game</button>
     <form>
-      <div= class="create-game">
-      <div class="game">
+      <div id="game" class="hide">
           <div class="row">
               <div class="col-4 box" data-id="0"></div>
               <div class="col-4 box" data-id="1"></div>
@@ -71,10 +69,9 @@
               <div class="col-4 box" data-id="8"></div>
             </div>
           </div>
-        </div>
-  <button class="btn btn-primary" type="submit">New Game</button>
+
   <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<button type="button" class="new game btn btn-primary hide" data-toggle="modal" data-target="#exampleModal">
   Launch demo modal
 </button>
 
@@ -99,6 +96,6 @@
   </div>
 </div>
   </form>
-            </div>
+</div>
   </body>
   </html>
