@@ -12,4 +12,13 @@ curl "https://tic-tac-toe-wdi.herokuapp.com/change-password" \
     }
   }'
 
+const gameBoard = {
+  id: `${id}`,
+  cells: ['', '', '', '', '', '', '', '', ''],
+  over: false,
+  player_x: {
+    id: `${TOKEN}`
+
+  }
+}
 echo

@@ -47,6 +47,17 @@ const signOutSuccessful = responseData => {
 const signOutFailure = () => {
   failureMessage('Failed to sign out')
 }
+const createGameSuccessful = (responseData) => {
+  store.game = responseData.game
+  store.user.token = responseData.user
+  console.log('store is', store)
+  $('#message').text('New Game!')
+  $('#message').removeClass()
+  $('#message').addClass('success')
+}
+const createGameFailure = () => {
+  failureMessage('You have not created a new game')
+}
 module.exports = {
   signUpSuccessful,
   signUpFailure,
@@ -55,5 +66,7 @@ module.exports = {
   changePasswordSuccessful,
   changePasswordFailure,
   signOutSuccessful,
-  signOutFailure
+  signOutFailure,
+  createGameSuccessful,
+  createGameFailure
 }
