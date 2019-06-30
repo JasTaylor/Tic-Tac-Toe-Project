@@ -7,6 +7,5 @@ $(() => {
   $('#changePassword').on('submit', authEvents.onChangePassword)
   $('#sign-out').on('submit', authEvents.onSignOut)
   $('#newgame-buttons').on('click', authEvents.onCreateGame)
-  $('[data-id]').on('click', authEvents.onClick)
-  $('#game').on('click', authEvents.onUpdateGame)
+  $('.box').on('click', authEvents.onClick)
 })

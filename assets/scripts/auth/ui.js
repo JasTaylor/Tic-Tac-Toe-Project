@@ -23,6 +23,7 @@ const failureMessage = message => {
 }
 const signUpSuccessful = responseData => {
   successMessage('You have signed up succesfully, have fun!')
+  store.user = responseData.user
 }
 
 const signUpFailure = () => {
@@ -49,6 +50,8 @@ const changePasswordFailure = () => {
 }
 const signOutSuccessful = responseData => {
   successMessage('You have signed out succesfully')
+
+  $('form').trigger('reset')
 }
 
 const signOutFailure = () => {
@@ -65,6 +68,20 @@ const createGameSuccessful = (responseData) => {
 const createGameFailure = () => {
   failureMessage('You have not created a new game')
 }
+const stopClick = function () {
+  console.log('no more clicking')
+}
+
+const updateGameSuccessful = (responseData) => {
+  store.game = responseData.game
+  $('#message').text('Successfully updated game')
+  console.log('responseData is:', responseData)
+}
+
+const updateGameFailure = () => {
+  failureMessage('You have not created a new game')
+}
+
 module.exports = {
   signUpSuccessful,
   signUpFailure,
@@ -75,5 +92,8 @@ module.exports = {
   signOutSuccessful,
   signOutFailure,
   createGameSuccessful,
-  createGameFailure
+  createGameFailure,
+  stopClick,
+  updateGameSuccessful,
+  updateGameFailure
 }

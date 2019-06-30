@@ -2,6 +2,7 @@
 
 const config = require('../config.js')
 const store = require('../store.js')
+
 // set up AJAX request
 const signUp = function (formData) {
   return $.ajax({
@@ -51,13 +52,22 @@ const createGame = function (data) {
     }
   })
 }
-const updateGame = data => {
-  // console.log('updateGame')
+const updateGame = function (data) {
+  console.log('this is', store)
   return $.ajax({
-    url: config.apiUrl + `/games/ + ${store.game.id}`, // id is supposed to represent current game ID
-    headers: {Authorization: `Token token=${store.user.token}`},
+    url: config.apiUrl + `/games/${store.game.id}`,
     method: 'PATCH',
-    data: data
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: {
+      'game': {
+        'cell': {
+          'index': 'index',
+          'value': 'value'},
+        'over': false
+      }
+    }
   })
 }
 module.exports = {
