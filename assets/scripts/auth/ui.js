@@ -64,6 +64,7 @@ const createGameSuccessful = (responseData) => {
   console.log(store)
   $('#message').text('New Game!')
   $('#message').addClass('success')
+  $('.box').html('')
 }
 const createGameFailure = () => {
   failureMessage('You have not created a new game')

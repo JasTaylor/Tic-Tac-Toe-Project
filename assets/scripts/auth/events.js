@@ -58,36 +58,6 @@ const switchTurn = function () {
   return turn
 }
 
-const onClick = function (index, value) {
-  console.log('clicked!!')
-  const cell = $(event.target)
-  const cellIndex = $(event.target).index()
-  if (cell.text() === 'X' || cell.text() === 'O') {
-    ui.stopClick()
-    $('#messageTwo').text('Invalid Click')
-  } else {
-    (cell).text(switchTurn())
-    $('#messageTwo').text('Next Players Turn')
-    console.log('this is', cellIndex)
-  }
-}
-
-const cells = ['', '', '', '', '', '', '', '', '']
-
-const win = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 4, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 4, 6],
-  [2, 5, 8]
-]
-// if each cell contains and X AND the cell index is
-// equal to an array in
-// the wins array, then it is a win
-
 const gameOver = function () {
   if ((cells[0] === 'X' && cells[1] === 'X' && cells[2] === 'X') ||
       (cells[3] === 'X' && cells[4] === 'X' && cells[5] === 'X') ||
@@ -98,6 +68,8 @@ const gameOver = function () {
       (cells[2] === 'X' && cells[4] === 'X' && cells[6] === 'X') ||
       (cells[2] === 'X' && cells[5] === 'X' && cells[8] === 'X')) {
     console.log('player one has won')
+    gameOver()
+    $('#messageTwo').text('player one has won')
   } else if (
     (cells[0] === 'O' && cells[1] === 'O' && cells[2] === 'O') ||
       (cells[3] === 'O' && cells[4] === 'O' && cells[5] === 'O') ||
@@ -108,6 +80,7 @@ const gameOver = function () {
       (cells[2] === 'O' && cells[4] === 'O' && cells[6] === 'O') ||
       (cells[2] === 'O' && cells[5] === 'O' && cells[8] === 'O')) {
     console.log('player two has won')
+    gameOver()
   } else if (
     (cells[0] === ('O' || 'X')) && (cells[1] === ('O' || 'X')) &&
     (cells[2] === ('O' || 'X')) && (cells[3] === ('O' || 'X')) &&
@@ -115,15 +88,33 @@ const gameOver = function () {
     (cells[6] === ('O' || 'X')) && (cells[7] === ('O' || 'X')) &&
     (cells[8] === ('O' || 'X'))) {
     console.log('Its a tie!')
-  } else {
-    console.log('Keep Playing')
+    gameOver()
   }
 }
+const cells = ['', '', '', '', '', '', '', '', '']
 
-const onUpdateGame = (event) => {
-  api.updateGame()
-    .then(ui.onUpdateGameSuccessful)
-    .catch(ui.onUpdateGameFailure)
+const onClick = function (index, value) {
+  console.log('clicked!!')
+  const cell = $(event.target)
+  const cellIndex = $(event.target).index()
+  if (cell.text() === '') {
+    // Update the cells array with the player's token if the box was empty
+    // cellIndex.splice(switchTurn())
+    // Update the board with the player's token if the box was empty.
+    cell.text(switchTurn())
+    if (!gameOver()) {
+      api.updateGame(turn, cellIndex, gameOver())
+        .then(ui.onUpdateGameSuccessful)
+        .catch(ui.onUpdateGameFailure)
+    }
+  } else if (cell.text() === 'X' || cell.text() === 'O') {
+    ui.stopClick()
+    $('#messageTwo').text('Invalid Click')
+  } else {
+    (cell).text(switchTurn())
+    $('#messageTwo').text('Next Players Turn')
+    console.log('this is', cellIndex)
+  }
 }
 
 // if ONE element has been clicked, it cant be changed
@@ -135,11 +126,11 @@ module.exports = {
   onChangePassword,
   onSignOut,
   onCreateGame,
-  cells,
-  turn,
-  switchTurn,
-  onClick,
-  onUpdateGame,
   gameOver,
-  win
+  onClick
 }
+// things for tomorrow
+// create a way to update cells array with X or O
+// figure out the GET method for stored games
+// README
+// deploy

@@ -52,7 +52,7 @@ const createGame = function (data) {
     }
   })
 }
-const updateGame = function (data) {
+const updateGame = function (cellIndex, turn, gameOver) {
   console.log('this is', store)
   return $.ajax({
     url: config.apiUrl + `/games/${store.game.id}`,
