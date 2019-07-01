@@ -14,7 +14,6 @@ const gameOver = function () {
       (cells[1] === 'X' && cells[4] === 'X' && cells[7] === 'X') ||
       (cells[2] === 'X' && cells[4] === 'X' && cells[6] === 'X') ||
       (cells[2] === 'X' && cells[5] === 'X' && cells[8] === 'X')) {
-    console.log('player one has won')
     $('#messageTwo').text('player one has won')
     return true
   } else if (
@@ -26,7 +25,7 @@ const gameOver = function () {
       (cells[1] === 'O' && cells[4] === 'O' && cells[7] === 'O') ||
       (cells[2] === 'O' && cells[4] === 'O' && cells[6] === 'O') ||
       (cells[2] === 'O' && cells[5] === 'O' && cells[8] === 'O')) {
-    console.log('player two has won')
+    $('#messageTwo').text('player two has won')
     return true
   } else if (
     (cells[0] === ('O' || 'X')) && (cells[1] === ('O' || 'X')) &&
@@ -34,7 +33,7 @@ const gameOver = function () {
     (cells[4] === ('O' || 'X')) && (cells[5] === ('O' || 'X')) &&
     (cells[6] === ('O' || 'X')) && (cells[7] === ('O' || 'X')) &&
     (cells[8] === ('O' || 'X'))) {
-    console.log('Its a tie!')
+    $('#messageTwo').text('TIE!')
     return true
   } else {
     return false
@@ -79,10 +78,7 @@ const signUpFailure = () => {
 }
 
 const signInSuccessful = responseData => {
-  console.log(responseData)
   successMessage('You have signed in, have fun!')
-  // below lets us have the user sign in and TOKEN for API,
-  // STORE LETS US ACCESS THE TOKEN IN ANY FILE
   store.user = responseData.user
 }
 
@@ -108,25 +104,23 @@ const signOutFailure = () => {
 const createGameSuccessful = (responseData) => {
   store.game = responseData.game
   store.over = false
-  console.log('game created somehow')
-  console.log(store)
   $('#message').text('New Game!')
   $('#message').addClass('success')
   $('.box').html('')
   $('#messageTwo').text('')
+  $('#messageThree').text('')
   $('form').trigger('reset')
 }
 const createGameFailure = () => {
   failureMessage('You have not created a new game')
 }
 const stopClick = function () {
-  console.log('no more clicking')
+  $('#messageThree').text('cell occupied!')
 }
 
 const updateGameSuccessful = (responseData) => {
   store.game = responseData.game
   $('#message').text('Successfully updated game')
-  console.log('responseData is:', responseData)
   if (gameOver()) {
     api.updateGame(null, null, true)
       .then(console.log)
@@ -140,11 +134,11 @@ const updateGameFailure = () => {
 
 const getGameSuccessful = (responseData) => {
   const game = responseData.games
-  $('#messageFour').text(`you have played this many: ${game.length}`)
+  $('#messageFour').text(`you have played this many times: ${game.length}`)
 }
 const getGameFailure = (responseData) => {
   const game = responseData.games
-  $('#messageFour').text(`you have played this many: ${game.length}`)
+  $('#messageFour').text(`you have played this many times: ${game.length}`)
 }
 module.exports = {
   signUpSuccessful,

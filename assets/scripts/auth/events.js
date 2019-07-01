@@ -59,7 +59,6 @@ const switchTurn = function () {
 }
 
 const gameOver = function () {
-  console.log('this is gameOver function', store.game.cells)
   const cells = store.game.cells
   if ((cells[0] === 'X' && cells[1] === 'X' && cells[2] === 'X') ||
       (cells[3] === 'X' && cells[4] === 'X' && cells[5] === 'X') ||
@@ -69,7 +68,6 @@ const gameOver = function () {
       (cells[1] === 'X' && cells[4] === 'X' && cells[7] === 'X') ||
       (cells[2] === 'X' && cells[4] === 'X' && cells[6] === 'X') ||
       (cells[2] === 'X' && cells[5] === 'X' && cells[8] === 'X')) {
-    console.log('player one has won')
     $('#messageTwo').text('player one has won')
     store.game.over = true
     return true
@@ -82,7 +80,7 @@ const gameOver = function () {
       (cells[1] === 'O' && cells[4] === 'O' && cells[7] === 'O') ||
       (cells[2] === 'O' && cells[4] === 'O' && cells[6] === 'O') ||
       (cells[2] === 'O' && cells[5] === 'O' && cells[8] === 'O')) {
-    console.log('player two has won')
+    $('#messageTwo').text('player two has won')
     store.game.over = true
   } else if (
     (cells[0] === ('O' || 'X')) && (cells[1] === ('O' || 'X')) &&
@@ -90,30 +88,25 @@ const gameOver = function () {
     (cells[4] === ('O' || 'X')) && (cells[5] === ('O' || 'X')) &&
     (cells[6] === ('O' || 'X')) && (cells[7] === ('O' || 'X')) &&
     (cells[8] === ('O' || 'X'))) {
-    console.log('Its a tie!')
+    $('#messageTwo').text('TIE!')
     store.game.over = true
   } else {
     return false
   }
 }
 const onClick = function () {
-  console.log('clicked!!')
   const cell = $(event.target)
   const cellIndex = $(event.target).index()
-  console.log('this is cellIndex', cellIndex)
-  console.log('this is value', turn)
   if (cell.text() === '') {
     if (!store.game.over) {
       const gameIsOver = gameOver()
-      console.log('this is game is over value', gameIsOver)
       api.updateGame(cellIndex, turn, gameIsOver)
         .then(function (data) {
-          // anything
           cell.text(turn)
           ui.updateGameSuccessful(data)
           switchTurn()
+          $('#messageThree').text(`${turn} - its your move`)
           gameOver()
-          $('#messageThree').text('Next Players Turn')
         })
         .catch(ui.updateGameFailure)
     }
@@ -121,10 +114,6 @@ const onClick = function () {
     ui.stopClick()
     $('#messageTwo').text('Invalid Click')
   }
-}
-
-const stopClick = function () {
-  console.log('no more clicking')
 }
 
 const onGetGame = event => {
@@ -144,7 +133,6 @@ module.exports = {
   onCreateGame,
   gameOver,
   onClick,
-  stopClick,
   onGetGame
 }
 // things for tomorrow

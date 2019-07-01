@@ -3,10 +3,8 @@
 const config = require('../config.js')
 const store = require('../store.js')
 
-// set up AJAX request
 const signUp = function (formData) {
   return $.ajax({
-    // the config file in here has access to our URL
     url: config.apiUrl + '/sign-up',
     data: formData,
     method: 'POST'
@@ -14,7 +12,6 @@ const signUp = function (formData) {
 }
 const signIn = function (formData) {
   return $.ajax({
-    // the config file in here has access to our URL
     url: config.apiUrl + '/sign-in',
     data: formData,
     method: 'POST'
@@ -32,7 +29,6 @@ const changePassword = function (formData) {
 }
 const signOut = function (formData) {
   return $.ajax({
-    // the config file in here has access to our URL
     url: config.apiUrl + '/sign-out',
     data: formData,
     method: 'DELETE',
