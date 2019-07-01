@@ -1,6 +1,14 @@
 'use strict'
 const store = require('../store')
+const authEvents = require('./events.js')
 
+const hideMessaging = function () {
+  setTimeout(function () {
+    $('#message').text('')
+    $('#message').hide('')
+  }, 3000
+  )
+}
 const successMessage = message => {
   $('#message').text(message)
   $('#message').removeClass('failure')
@@ -21,6 +29,7 @@ const failureMessage = message => {
   $('#message').addClass('failure')
   $('form').trigger('reset')
 }
+
 const signUpSuccessful = responseData => {
   successMessage('You have signed up succesfully, have fun!')
   store.user = responseData.user
@@ -50,7 +59,6 @@ const changePasswordFailure = () => {
 }
 const signOutSuccessful = responseData => {
   successMessage('You have signed out succesfully')
-
   $('form').trigger('reset')
 }
 
@@ -74,6 +82,7 @@ const stopClick = function () {
 }
 
 const updateGameSuccessful = (responseData) => {
+  store.player === 'X' ? store.player = 'O' : store.player = 'X'
   store.game = responseData.game
   $('#message').text('Successfully updated game')
   console.log('responseData is:', responseData)
@@ -96,5 +105,7 @@ module.exports = {
   createGameFailure,
   stopClick,
   updateGameSuccessful,
-  updateGameFailure
+  updateGameFailure,
+  hideMessaging,
+  authEvents
 }

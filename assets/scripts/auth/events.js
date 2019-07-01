@@ -3,6 +3,7 @@
 const getFormFields = require('../../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui.js')
+const store = require('../store.js')
 
 const onSignUp = event => {
   event.preventDefault()
@@ -40,6 +41,7 @@ const onSignOut = event => {
     .then(ui.signOutSuccessful)
     .catch(ui.signOutFailure)
 }
+
 const onCreateGame = event => {
   event.preventDefault()
   const form = event.target
@@ -50,15 +52,15 @@ const onCreateGame = event => {
 }
 
 let turn = 'O'
-
 const switchTurn = function () {
   if (turn === 'O') {
     (turn = 'X')
   } else { turn = 'O' }
-  return turn
 }
 
 const gameOver = function () {
+  console.log('this is gameOver function', store.game.cells)
+  const cells = store.game.cells
   if ((cells[0] === 'X' && cells[1] === 'X' && cells[2] === 'X') ||
       (cells[3] === 'X' && cells[4] === 'X' && cells[5] === 'X') ||
       (cells[6] === 'X' && cells[7] === 'X' && cells[8] === 'X') ||
@@ -68,8 +70,8 @@ const gameOver = function () {
       (cells[2] === 'X' && cells[4] === 'X' && cells[6] === 'X') ||
       (cells[2] === 'X' && cells[5] === 'X' && cells[8] === 'X')) {
     console.log('player one has won')
-    gameOver()
     $('#messageTwo').text('player one has won')
+    return true
   } else if (
     (cells[0] === 'O' && cells[1] === 'O' && cells[2] === 'O') ||
       (cells[3] === 'O' && cells[4] === 'O' && cells[5] === 'O') ||
@@ -80,7 +82,7 @@ const gameOver = function () {
       (cells[2] === 'O' && cells[4] === 'O' && cells[6] === 'O') ||
       (cells[2] === 'O' && cells[5] === 'O' && cells[8] === 'O')) {
     console.log('player two has won')
-    gameOver()
+    return true
   } else if (
     (cells[0] === ('O' || 'X')) && (cells[1] === ('O' || 'X')) &&
     (cells[2] === ('O' || 'X')) && (cells[3] === ('O' || 'X')) &&
@@ -88,32 +90,37 @@ const gameOver = function () {
     (cells[6] === ('O' || 'X')) && (cells[7] === ('O' || 'X')) &&
     (cells[8] === ('O' || 'X'))) {
     console.log('Its a tie!')
-    gameOver()
+    return true
+  } else {
+    return false
   }
 }
-const cells = ['', '', '', '', '', '', '', '', '']
-
-const onClick = function (index, value) {
+const onClick = function () {
   console.log('clicked!!')
   const cell = $(event.target)
   const cellIndex = $(event.target).index()
+  console.log('this is cellIndex', cellIndex)
+  console.log('this is value', turn)
   if (cell.text() === '') {
     // Update the cells array with the player's token if the box was empty
-    // cellIndex.splice(switchTurn())
     // Update the board with the player's token if the box was empty.
-    cell.text(switchTurn())
-    if (!gameOver()) {
-      api.updateGame(turn, cellIndex, gameOver())
-        .then(ui.onUpdateGameSuccessful)
-        .catch(ui.onUpdateGameFailure)
+    if (!store.game.over) {
+      const gameIsOver = gameOver()
+      console.log(gameIsOver)
+      api.updateGame(cellIndex, turn, gameIsOver)
+        .then(function (data) {
+          cell.text(turn)
+          // anything
+          ui.updateGameSuccessful(data)
+          switchTurn()
+          $('#messageTwo').text('Next Players Turn')
+          console.log(store.game.over)
+        })
+        .catch(ui.updateGameFailure)
     }
   } else if (cell.text() === 'X' || cell.text() === 'O') {
     ui.stopClick()
     $('#messageTwo').text('Invalid Click')
-  } else {
-    (cell).text(switchTurn())
-    $('#messageTwo').text('Next Players Turn')
-    console.log('this is', cellIndex)
   }
 }
 
@@ -131,6 +138,9 @@ module.exports = {
 }
 // things for tomorrow
 // create a way to update cells array with X or O
+// link gameOver fcn
+// have new game always start with X
+// change pass isnt working
 // figure out the GET method for stored games
 // README
 // deploy

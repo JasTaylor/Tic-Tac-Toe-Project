@@ -22,7 +22,6 @@ const signIn = function (formData) {
 }
 const changePassword = function (formData) {
   return $.ajax({
-    // the config file in here has access to our URL
     url: config.apiUrl + '/change-password',
     data: formData,
     method: 'PATCH',
@@ -52,24 +51,42 @@ const createGame = function (data) {
     }
   })
 }
-const updateGame = function (cellIndex, turn, gameOver) {
-  console.log('this is', store)
+const updateGame = function (cellIndex, value, over) {
   return $.ajax({
     url: config.apiUrl + `/games/${store.game.id}`,
     method: 'PATCH',
     headers: {
-      Authorization: 'Token token=' + store.user.token
+      Authorization: `Token token=${store.user.token}`
     },
-    data: {
+    contentType: 'application/json',
+    data:
+    {
       'game': {
         'cell': {
-          'index': 'index',
-          'value': 'value'},
-        'over': false
+          'index': cellIndex,
+          'value': value
+        },
+        'over': over
       }
     }
   })
-}
+}// const getGame = function () {
+// return $.ajax({
+//  url: config.apiUrl + `/games/${store.id}`,
+// method: 'SHOW',
+// headers: {
+//   Authorization: `Token token=${store.user.token}`
+//  },
+// contentType: 'application/json',
+//   data: {//   'game': {
+//   'id': 1,
+//   'cells': ['','','','','','','','',''],
+//   'over': true,
+//   'player_x': {
+//     'id': 1,
+//     'email': 'and@and.com'
+//   },
+//   'player_o': null//   }//  }//  }
 module.exports = {
   signUp,
   signIn,
