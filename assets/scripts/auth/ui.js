@@ -1,7 +1,45 @@
 'use strict'
 const store = require('../store')
 const authEvents = require('./events.js')
+const api = require('./api')
 
+const gameOver = function () {
+  console.log('this is gameOver function', store.game.cells)
+  const cells = store.game.cells
+  if ((cells[0] === 'X' && cells[1] === 'X' && cells[2] === 'X') ||
+      (cells[3] === 'X' && cells[4] === 'X' && cells[5] === 'X') ||
+      (cells[6] === 'X' && cells[7] === 'X' && cells[8] === 'X') ||
+      (cells[0] === 'X' && cells[4] === 'X' && cells[8] === 'X') ||
+      (cells[0] === 'X' && cells[3] === 'X' && cells[6] === 'X') ||
+      (cells[1] === 'X' && cells[4] === 'X' && cells[7] === 'X') ||
+      (cells[2] === 'X' && cells[4] === 'X' && cells[6] === 'X') ||
+      (cells[2] === 'X' && cells[5] === 'X' && cells[8] === 'X')) {
+    console.log('player one has won')
+    $('#messageTwo').text('player one has won')
+    return true
+  } else if (
+    (cells[0] === 'O' && cells[1] === 'O' && cells[2] === 'O') ||
+      (cells[3] === 'O' && cells[4] === 'O' && cells[5] === 'O') ||
+      (cells[6] === 'O' && cells[7] === 'O' && cells[8] === 'O') ||
+      (cells[0] === 'O' && cells[4] === 'O' && cells[8] === 'O') ||
+      (cells[0] === 'O' && cells[3] === 'O' && cells[6] === 'O') ||
+      (cells[1] === 'O' && cells[4] === 'O' && cells[7] === 'O') ||
+      (cells[2] === 'O' && cells[4] === 'O' && cells[6] === 'O') ||
+      (cells[2] === 'O' && cells[5] === 'O' && cells[8] === 'O')) {
+    console.log('player two has won')
+    return true
+  } else if (
+    (cells[0] === ('O' || 'X')) && (cells[1] === ('O' || 'X')) &&
+    (cells[2] === ('O' || 'X')) && (cells[3] === ('O' || 'X')) &&
+    (cells[4] === ('O' || 'X')) && (cells[5] === ('O' || 'X')) &&
+    (cells[6] === ('O' || 'X')) && (cells[7] === ('O' || 'X')) &&
+    (cells[8] === ('O' || 'X'))) {
+    console.log('Its a tie!')
+    return true
+  } else {
+    return false
+  }
+}
 const hideMessaging = function () {
   setTimeout(function () {
     $('#message').text('')
@@ -21,6 +59,7 @@ const successMessage = message => {
   $('#newgame-buttons').removeClass('hide')
   $('#sign-up').addClass('hide')
   $('#sign-in').addClass('hide')
+  $('#getgame-buttons').removeClass('hide')
   $('form').trigger('reset')
 }
 const failureMessage = message => {
@@ -65,6 +104,7 @@ const signOutSuccessful = responseData => {
 const signOutFailure = () => {
   failureMessage('Failed to sign out')
 }
+
 const createGameSuccessful = (responseData) => {
   store.game = responseData.game
   store.over = false
@@ -73,6 +113,8 @@ const createGameSuccessful = (responseData) => {
   $('#message').text('New Game!')
   $('#message').addClass('success')
   $('.box').html('')
+  $('#messageTwo').text('')
+  $('form').trigger('reset')
 }
 const createGameFailure = () => {
   failureMessage('You have not created a new game')
@@ -82,16 +124,28 @@ const stopClick = function () {
 }
 
 const updateGameSuccessful = (responseData) => {
-  store.player === 'X' ? store.player = 'O' : store.player = 'X'
   store.game = responseData.game
   $('#message').text('Successfully updated game')
   console.log('responseData is:', responseData)
+  if (gameOver()) {
+    api.updateGame(null, null, true)
+      .then(console.log)
+      .catch(console.log)
+  }
 }
 
 const updateGameFailure = () => {
   failureMessage('You have not created a new game')
 }
 
+const getGameSuccessful = (responseData) => {
+  const game = responseData.games
+  $('#messageFour').text(`you have played this many: ${game.length}`)
+}
+const getGameFailure = (responseData) => {
+  const game = responseData.games
+  $('#messageFour').text(`you have played this many: ${game.length}`)
+}
 module.exports = {
   signUpSuccessful,
   signUpFailure,
@@ -107,5 +161,9 @@ module.exports = {
   updateGameSuccessful,
   updateGameFailure,
   hideMessaging,
-  authEvents
+  authEvents,
+  gameOver,
+  api,
+  getGameSuccessful,
+  getGameFailure
 }

@@ -60,38 +60,32 @@ const updateGame = function (cellIndex, value, over) {
     },
     contentType: 'application/json',
     data:
-    {
-      'game': {
-        'cell': {
-          'index': cellIndex,
-          'value': value
+    JSON.stringify({
+      game: {
+        cell: {
+          index: cellIndex,
+          value: value
         },
-        'over': over
+        over: over
       }
+    })
+  })
+}
+const getGame = function () {
+  return $.ajax({
+    url: config.apiUrl + '/games',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
     }
   })
-}// const getGame = function () {
-// return $.ajax({
-//  url: config.apiUrl + `/games/${store.id}`,
-// method: 'SHOW',
-// headers: {
-//   Authorization: `Token token=${store.user.token}`
-//  },
-// contentType: 'application/json',
-//   data: {//   'game': {
-//   'id': 1,
-//   'cells': ['','','','','','','','',''],
-//   'over': true,
-//   'player_x': {
-//     'id': 1,
-//     'email': 'and@and.com'
-//   },
-//   'player_o': null//   }//  }//  }
+}
 module.exports = {
   signUp,
   signIn,
   changePassword,
   signOut,
   createGame,
-  updateGame
+  updateGame,
+  getGame
 }

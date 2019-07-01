@@ -34,7 +34,6 @@ const onChangePassword = event => {
 
 const onSignOut = event => {
   event.preventDefault()
-  // event.target is the form!
   const form = event.target
   const formData = getFormFields(form)
   api.signOut(formData)
@@ -48,10 +47,11 @@ const onCreateGame = event => {
   const formData = getFormFields(form)
   api.createGame(formData)
     .then(ui.createGameSuccessful)
+    .then(turn = 'X')
     .catch(ui.createGameFailure)
 }
 
-let turn = 'O'
+let turn = 'X'
 const switchTurn = function () {
   if (turn === 'O') {
     (turn = 'X')
@@ -71,6 +71,7 @@ const gameOver = function () {
       (cells[2] === 'X' && cells[5] === 'X' && cells[8] === 'X')) {
     console.log('player one has won')
     $('#messageTwo').text('player one has won')
+    store.game.over = true
     return true
   } else if (
     (cells[0] === 'O' && cells[1] === 'O' && cells[2] === 'O') ||
@@ -82,7 +83,7 @@ const gameOver = function () {
       (cells[2] === 'O' && cells[4] === 'O' && cells[6] === 'O') ||
       (cells[2] === 'O' && cells[5] === 'O' && cells[8] === 'O')) {
     console.log('player two has won')
-    return true
+    store.game.over = true
   } else if (
     (cells[0] === ('O' || 'X')) && (cells[1] === ('O' || 'X')) &&
     (cells[2] === ('O' || 'X')) && (cells[3] === ('O' || 'X')) &&
@@ -90,7 +91,7 @@ const gameOver = function () {
     (cells[6] === ('O' || 'X')) && (cells[7] === ('O' || 'X')) &&
     (cells[8] === ('O' || 'X'))) {
     console.log('Its a tie!')
-    return true
+    store.game.over = true
   } else {
     return false
   }
@@ -102,19 +103,17 @@ const onClick = function () {
   console.log('this is cellIndex', cellIndex)
   console.log('this is value', turn)
   if (cell.text() === '') {
-    // Update the cells array with the player's token if the box was empty
-    // Update the board with the player's token if the box was empty.
     if (!store.game.over) {
       const gameIsOver = gameOver()
-      console.log(gameIsOver)
+      console.log('this is game is over value', gameIsOver)
       api.updateGame(cellIndex, turn, gameIsOver)
         .then(function (data) {
-          cell.text(turn)
           // anything
+          cell.text(turn)
           ui.updateGameSuccessful(data)
           switchTurn()
-          $('#messageTwo').text('Next Players Turn')
-          console.log(store.game.over)
+          gameOver()
+          $('#messageThree').text('Next Players Turn')
         })
         .catch(ui.updateGameFailure)
     }
@@ -124,9 +123,19 @@ const onClick = function () {
   }
 }
 
-// if ONE element has been clicked, it cant be changed
-//  isVegetarian ? 'no meat for you' : 'eats meat'
-// trying to have each data-id click have text inside
+const stopClick = function () {
+  console.log('no more clicking')
+}
+
+const onGetGame = event => {
+  event.preventDefault()
+  const form = event.target
+  const formData = getFormFields(form)
+  api.getGame(formData)
+    .then(ui.getGameSuccessful)
+    .catch(ui.getGameFailure)
+}
+
 module.exports = {
   onSignUp,
   onSignIn,
@@ -134,7 +143,9 @@ module.exports = {
   onSignOut,
   onCreateGame,
   gameOver,
-  onClick
+  onClick,
+  stopClick,
+  onGetGame
 }
 // things for tomorrow
 // create a way to update cells array with X or O
