@@ -84,13 +84,13 @@ const gameOver = function () {
     $('#messageTwo').text('player two has won')
     $('#messageThree').text('')
     store.game.over = true
-  } else if (
-    (cells[0] === ('O' || 'X')) && (cells[1] === ('O' || 'X')) &&
-    (cells[2] === ('O' || 'X')) && (cells[3] === ('O' || 'X')) &&
-    (cells[4] === ('O' || 'X')) && (cells[5] === ('O' || 'X')) &&
-    (cells[6] === ('O' || 'X')) && (cells[7] === ('O' || 'X')) &&
-    (cells[8] === ('O' || 'X'))) {
-    $('#messageFour').text('tie')
+  } if (
+    (cells[0] !== ('')) && (cells[1] !== ('')) &&
+    (cells[2] !== ('')) && (cells[3] !== ('')) &&
+    (cells[4] !== ('')) && (cells[5] !== ('')) &&
+    (cells[6] !== ('')) && (cells[7] !== ('')) &&
+    (cells[8] !== (''))) {
+    $('#messageFour').text('its a tie!')
     $('#messageThree').text('')
     store.game.over = true
   } else {
