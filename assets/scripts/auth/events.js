@@ -69,6 +69,7 @@ const gameOver = function () {
       (cells[2] === 'X' && cells[4] === 'X' && cells[6] === 'X') ||
       (cells[2] === 'X' && cells[5] === 'X' && cells[8] === 'X')) {
     $('#messageTwo').text('player one has won')
+    $('#messageThree').text('')
     store.game.over = true
     return true
   } else if (
@@ -81,6 +82,7 @@ const gameOver = function () {
       (cells[2] === 'O' && cells[4] === 'O' && cells[6] === 'O') ||
       (cells[2] === 'O' && cells[5] === 'O' && cells[8] === 'O')) {
     $('#messageTwo').text('player two has won')
+    $('#messageThree').text('')
     store.game.over = true
   } else if (
     (cells[0] === ('O' || 'X')) && (cells[1] === ('O' || 'X')) &&
@@ -88,7 +90,8 @@ const gameOver = function () {
     (cells[4] === ('O' || 'X')) && (cells[5] === ('O' || 'X')) &&
     (cells[6] === ('O' || 'X')) && (cells[7] === ('O' || 'X')) &&
     (cells[8] === ('O' || 'X'))) {
-    $('#messageTwo').text('TIE!')
+    $('#messageFour').text('tie')
+    $('#messageThree').text('')
     store.game.over = true
   } else {
     return false

@@ -4,7 +4,6 @@ const authEvents = require('./events.js')
 const api = require('./api')
 
 const gameOver = function () {
-  console.log('this is gameOver function', store.game.cells)
   const cells = store.game.cells
   if ((cells[0] === 'X' && cells[1] === 'X' && cells[2] === 'X') ||
       (cells[3] === 'X' && cells[4] === 'X' && cells[5] === 'X') ||
@@ -33,7 +32,7 @@ const gameOver = function () {
     (cells[4] === ('O' || 'X')) && (cells[5] === ('O' || 'X')) &&
     (cells[6] === ('O' || 'X')) && (cells[7] === ('O' || 'X')) &&
     (cells[8] === ('O' || 'X'))) {
-    $('#messageTwo').text('TIE!')
+    $('#message').text('tie!')
     return true
   } else {
     return false
@@ -50,7 +49,6 @@ const successMessage = message => {
   $('#message').text(message)
   $('#message').removeClass('failure')
   $('#message').addClass('success')
-  // to clear out our forms
   $('#changePassword').removeClass('hide')
   $('#sign-out').removeClass('hide')
   $('#game').removeClass('hide')
@@ -69,8 +67,8 @@ const failureMessage = message => {
 }
 
 const signUpSuccessful = responseData => {
-  successMessage('You have signed up succesfully, have fun!')
   store.user = responseData.user
+  successMessage('You have signed up succesfully, have fun!')
 }
 
 const signUpFailure = () => {
@@ -78,8 +76,8 @@ const signUpFailure = () => {
 }
 
 const signInSuccessful = responseData => {
-  successMessage('You have signed in, have fun!')
   store.user = responseData.user
+  successMessage('You have signed in, have fun!')
 }
 
 const signInFailure = () => {
@@ -123,8 +121,8 @@ const updateGameSuccessful = (responseData) => {
   $('#message').text('Successfully updated game')
   if (gameOver()) {
     api.updateGame(null, null, true)
-      .then(console.log)
-      .catch(console.log)
+      .then()
+      .catch()
   }
 }
 
