@@ -51,7 +51,6 @@ const successMessage = message => {
   $('#message').addClass('success')
   $('#changePassword').removeClass('hide')
   $('#sign-out').removeClass('hide')
-  $('#game').removeClass('hide')
   $('[data-id]').removeClass('hide')
   $('#newgame-buttons').removeClass('hide')
   $('#sign-up').addClass('hide')
@@ -86,12 +85,20 @@ const signInFailure = () => {
 const changePasswordSuccessful = responseData => {
   successMessage('You have changed your password succesfully')
 }
-
 const changePasswordFailure = () => {
   failureMessage('Failed to change password')
 }
 const signOutSuccessful = responseData => {
-  successMessage('You have signed out succesfully')
+  $('#message').text('You have signed out succesfully')
+  $('#changePassword').addClass('hide')
+  $('#sign-out').addClass('hide')
+  $('[data-id]').addClass('hide')
+  $('#newgame-buttons').addClass('hide')
+  $('#getgame-buttons').addClass('hide')
+  $('#messageThree').addClass('hide')
+  $('#messageFour').addClass('hide')
+  $('#sign-up').removeClass('hide')
+  $('#sign-in').removeClass('hide')
   $('form').trigger('reset')
 }
 
@@ -107,6 +114,7 @@ const createGameSuccessful = (responseData) => {
   $('.box').html('')
   $('#messageTwo').text('')
   $('#messageThree').text('')
+  $('#game').removeClass('hide')
   $('form').trigger('reset')
 }
 const createGameFailure = () => {
