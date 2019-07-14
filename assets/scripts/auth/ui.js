@@ -67,7 +67,7 @@ const failureMessage = message => {
 
 const signUpSuccessful = responseData => {
   store.user = responseData.user
-  successMessage('You have signed up succesfully, have fun!')
+  $('#message').text('You have signed up succesfully, please now sign in and have fun!')
 }
 
 const signUpFailure = () => {
@@ -95,6 +95,7 @@ const signOutSuccessful = responseData => {
   $('[data-id]').addClass('hide')
   $('#newgame-buttons').addClass('hide')
   $('#getgame-buttons').addClass('hide')
+  $('#messageTwo').addClass('hide')
   $('#messageThree').addClass('hide')
   $('#messageFour').addClass('hide')
   $('#sign-up').removeClass('hide')
