@@ -53,10 +53,11 @@ const successMessage = message => {
   $('#sign-out').removeClass('hide')
   $('[data-id]').removeClass('hide')
   $('#newgame-buttons').removeClass('hide')
-  $('.modalButton').addClass('hide')
+  $('#modalButton').addClass('hide')
   $('#getgame-buttons').removeClass('hide')
   $('form').trigger('reset')
 }
+
 const failureMessage = message => {
   $('#message').text(message)
   $('#message').removeClass('success')
