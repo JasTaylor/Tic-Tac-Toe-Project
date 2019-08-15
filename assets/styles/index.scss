@@ -6,6 +6,11 @@
   padding: 20px;
 }
 
+  .img-fluid{
+    max-width: 100%;
+    height: auto;
+  }
+
 .success {
   background-color: #080;
 }
@@ -24,6 +29,16 @@
   width: 140px;
 }
 
+.modal-content {
+  background-color: gray;
+}
+
+body {
+ background-color: gray;
+ color: white;
+}
+
+
 .hide {
   display: none;
 }
@@ -32,6 +47,7 @@
   display: block;
 
 }
+
 
 
 ul {

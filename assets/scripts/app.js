@@ -9,4 +9,5 @@ $(() => {
   $('#newgame-buttons').on('click', authEvents.onCreateGame)
   $('.box').on('click', authEvents.onClick)
   $('#getgame-buttons').on('click', authEvents.onGetGame)
+  // $('#guest').on('click', authEvents.onGuestSignIn)
 })
