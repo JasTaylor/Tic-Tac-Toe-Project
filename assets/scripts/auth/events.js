@@ -32,7 +32,7 @@ const onGuest = event => {
     }
   }
   api.signIn(guestInfo)
-    .then(ui.signInSuccess)
+    .then(ui.signInSuccessful)
     .catch(ui.signInFailure)
 }
 
