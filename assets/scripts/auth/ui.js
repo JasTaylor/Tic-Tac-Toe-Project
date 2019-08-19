@@ -62,7 +62,6 @@ const failureMessage = message => {
   $('#message').text(message)
   $('#message').removeClass('success')
   $('#message').addClass('failure')
-  $('form').trigger('reset')
 }
 
 const signUpSuccessful = responseData => {
@@ -77,6 +76,7 @@ const signUpFailure = () => {
 const signInSuccessful = responseData => {
   store.user = responseData.user
   successMessage('You have signed in, have fun!')
+  $('.myModal').modal('hide')
 }
 
 const signInFailure = () => {
@@ -100,6 +100,7 @@ const signOutSuccessful = responseData => {
   $('#messageFour').addClass('hide')
   $('#sign-up').removeClass('hide')
   $('#sign-in').removeClass('hide')
+  $('#modalButton').removeClass('hide')
   $('form').trigger('reset')
 }
 

@@ -22,16 +22,19 @@ const onSignIn = event => {
     .then(ui.signInSuccessful)
     .catch(ui.signInFailure)
 }
-// const onGuestSignIn = event => {
-//   event.preventDefault()
-//   const guest = {
-//     'credentials': {
-//       'email': 'guestuser@gmail.com',
-//       'password': 'guest'
-//     }
-//   }
-//   api.signIn(guest)
-// }
+
+const onGuest = event => {
+  event.preventDefault()
+  const guestInfo = {
+    'credentials': {
+      'email': 'j@j',
+      'password': 'j'
+    }
+  }
+  api.signIn(guestInfo)
+    .then(ui.signInSuccess)
+    .catch(ui.signInFailure)
+}
 
 const onChangePassword = event => {
   event.preventDefault()
@@ -146,8 +149,8 @@ module.exports = {
   onCreateGame,
   gameOver,
   onClick,
-  onGetGame
-  // onGuestSignIn
+  onGetGame,
+  onGuest
 }
 // things for tomorrow
 // create a way to update cells array with X or O
