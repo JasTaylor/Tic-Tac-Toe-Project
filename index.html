@@ -16,17 +16,20 @@
     <img src="../images/TIC-TAC-TOE.png" class="img-fluid" alt="Responsive image">
     <h3 id="message"></h3>
   </div>
+  <h3 id="messageTwo"></h3>
+  <h2 id="messageFour"></h2>
+  <h2 id="messageThree"></h2>
 
-<button id="modalButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
+<!-- SIGN IN & SIGN UP Modal -->
+<div class="front">
+<button id="modalButton" type="button" class="mb-2 btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Sign-Up / Sign-In
 </button>
-
-<!-- Modal -->
 <div class="modal fade myModal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Sign-Up & Sign-In</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -40,6 +43,7 @@
         </form>
         <form id="sign-up" class="col-md-6">
           <h4>Sign Up</h4>
+          <h6 id="messageFive"></h6>
           <input class="form-control" type="email" name="credentials[email]" placeholder="Email" autocomplete="email">
           <input class="form-control" type="password" name="credentials[password]" placeholder="Password" autocomplete="current-password">
           <input class="form-control" type="password" name="credentials[password_confirmation]" placeholder="Confirm Password" autocomplete="current-password">
@@ -53,33 +57,50 @@
   </div>
 </div>
 
+<!-- GUEST BUTTON -->
+<div id="guest">
 <button class="btn btn-success guest" type="submit">Guest Log In</button>
 <h4>Sign In Without Signing Up!</h4>
 <h6>*please note that game data will reflect ALL guest user stats*</h6>
 </div>
-
-
-<form id="changePassword" class="col-md-6 mb-5 hide">
-  <div class="row">
-<h2>Change Password</h2>
-  <input class="form-control mb-2" type="password" name="passwords[old]" placeholder="Old Password">
-  <input class="form-control mb-2" type="password" name="passwords[new]" placeholder="New Password">
-  <button class="btn btn-primary" type="submit">Change Password</button>
 </div>
-</form>
 
-<form id="sign-out" class="hide">
-  <h2>Sign Out</h2>
-  <button type="submit">Sign Out</button>
-</form>
-
+<!-- CHANGE PASSWORD Modal -->
+<nav class="container row">
+<button type="button" class="btn btn-warning cpModal hide mr-3 mb-2" data-toggle="modal" data-target="#cpModal">
+  Reset Password
+</button>
+<!-- Modal -->
+<div class="modal fade" id="cpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cpModalLabel">Reset Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="changePassword">
+          <input class="form-control mb-2" type="password" name="passwords[old]" placeholder="Old Password">
+          <input class="form-control mb-2" type="password" name="passwords[new]" placeholder="New Password">
+          <button class="btn btn-primary" type="submit">Change Password</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Exit</button>
+        </form>
+      </div>
+    </div>
   </div>
-<br></br>
-  <div class="container">
-
-      <button id="newgame-buttons" class="btn btn-success hide">New Game</button>
-    <h3 id="messageTwo"></h3>
-      <h2 id="messageFour"></h2>
+</div>
+<!-- SIGN OUT button-->
+<form id="sign-out" class="hide">
+  <button type="submit" class="btn btn-danger mr-3">Sign Out</button>
+</form>
+<form>
+    <button id="getgame-buttons" class="btn btn-primary hide mr-3 mb-2">Get Game Stats</button>
+  </form>
+  <div>
+      <button id="newgame-buttons" class="btn btn-success hide mr-3 mb-2">New Game</button>
+    </nav>
     <form>
       <div id="game" class="hide">
           <div class="row">
@@ -94,15 +115,7 @@
               <div class="col-4 box" data-id="8"></div>
             </div>
           </div>
-<h2 id="messageThree"></h2>
 </form>
-<form>
-    <button id="getgame-buttons" class="btn btn-primary hide">Get Game Stats</button>
-<h2 id="messageFour"></h2>
-  </form>
-  <br>
-
-</br>
 </div>
 </body>
 </html>

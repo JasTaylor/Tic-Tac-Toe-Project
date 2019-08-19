@@ -49,7 +49,7 @@ const successMessage = message => {
   $('#message').text(message)
   $('#message').removeClass('failure')
   $('#message').addClass('success')
-  $('#changePassword').removeClass('hide')
+  $('.cpModal').removeClass('hide')
   $('#sign-out').removeClass('hide')
   $('[data-id]').removeClass('hide')
   $('#newgame-buttons').removeClass('hide')
@@ -66,7 +66,7 @@ const failureMessage = message => {
 
 const signUpSuccessful = responseData => {
   store.user = responseData.user
-  $('#message').text('You have signed up succesfully, please now sign in and have fun!')
+  $('#messageFive').text('You have signed up succesfully, please now sign in and have fun!')
 }
 
 const signUpFailure = () => {
@@ -77,6 +77,8 @@ const signInSuccessful = responseData => {
   store.user = responseData.user
   successMessage('You have signed in, have fun!')
   $('.myModal').modal('hide')
+  $('#guest').addClass('hide')
+  $('#cpModal').removeClass('hide')
 }
 
 const signInFailure = () => {
@@ -84,6 +86,7 @@ const signInFailure = () => {
 }
 const changePasswordSuccessful = responseData => {
   successMessage('You have changed your password succesfully')
+  $('.cpModal').modal('hide')
 }
 const changePasswordFailure = () => {
   failureMessage('Failed to change password')
@@ -101,6 +104,8 @@ const signOutSuccessful = responseData => {
   $('#sign-up').removeClass('hide')
   $('#sign-in').removeClass('hide')
   $('#modalButton').removeClass('hide')
+  $('#guest').removeClass('hide')
+  $('.cpModal').addClass('hide')
   $('form').trigger('reset')
 }
 

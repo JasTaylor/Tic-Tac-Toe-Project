@@ -11,6 +11,10 @@
     height: auto;
   }
 
+.container {
+  flex-direction: row;
+}
+
 .success {
   background-color: #080;
 }
@@ -27,6 +31,7 @@
   height: 140px;
   text-align: center;
   width: 140px;
+  font-size: 66pt;
 }
 
 .modal-content {
