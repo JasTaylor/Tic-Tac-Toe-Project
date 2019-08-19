@@ -13,7 +13,7 @@ const gameOver = function () {
       (cells[1] === 'X' && cells[4] === 'X' && cells[7] === 'X') ||
       (cells[2] === 'X' && cells[4] === 'X' && cells[6] === 'X') ||
       (cells[2] === 'X' && cells[5] === 'X' && cells[8] === 'X')) {
-    $('#messageTwo').text('player one has won')
+    $('#messageTwo').text('Player X has won!')
     return true
   } else if (
     (cells[0] === 'O' && cells[1] === 'O' && cells[2] === 'O') ||
@@ -24,7 +24,7 @@ const gameOver = function () {
       (cells[1] === 'O' && cells[4] === 'O' && cells[7] === 'O') ||
       (cells[2] === 'O' && cells[4] === 'O' && cells[6] === 'O') ||
       (cells[2] === 'O' && cells[5] === 'O' && cells[8] === 'O')) {
-    $('#messageTwo').text('player two has won')
+    $('#messageTwo').text('Player O has won!')
     return true
   } else if (
     (cells[0] === ('O' || 'X')) && (cells[1] === ('O' || 'X')) &&
@@ -72,7 +72,7 @@ const signUpSuccessful = responseData => {
 }
 
 const signUpFailure = () => {
-  failureMessage('You have not signed up, please try again.')
+  $('#messageSeven').text('You have not signed up, please try again.')
 }
 
 const signInSuccessful = responseData => {
@@ -84,7 +84,7 @@ const signInSuccessful = responseData => {
 }
 
 const signInFailure = () => {
-  failureMessage('You have not signed in, please try again.')
+  $('#messageFive').text('You have not signed in, please try again.')
 }
 const changePasswordSuccessful = responseData => {
   $('#messageSix').text('You have changed your password succesfully')
@@ -132,6 +132,7 @@ const createGameFailure = () => {
 }
 const stopClick = function () {
   $('#messageThree').text('cell occupied!')
+  $('#messageThree').addClass('newturn')
 }
 
 const updateGameSuccessful = (responseData) => {
@@ -149,11 +150,12 @@ const updateGameFailure = () => {
 
 const getGameSuccessful = (responseData) => {
   const game = responseData.games
-  $('#messageFour').text(`you have played this many times: ${game.length}`)
+  $('#messageFour').text(`NUMBER OF GAMES PLAYED = ${game.length}`)
+  $('#messageFour').addClass('getgame')
 }
 const getGameFailure = (responseData) => {
   const game = responseData.games
-  $('#messageFour').text(`you have played this many times: ${game.length}`)
+  $('#messageFour').text(`NUMBER OF GAMES PLAYED = ${game.length}`)
 }
 module.exports = {
   signUpSuccessful,

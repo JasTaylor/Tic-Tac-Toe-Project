@@ -128,7 +128,6 @@ const onClick = function () {
     }
   } else if (cell.text() === 'X' || cell.text() === 'O') {
     ui.stopClick()
-    $('#messageTwo').text('Invalid Click')
   }
 }
 
