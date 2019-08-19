@@ -56,12 +56,14 @@ const successMessage = message => {
   $('#modalButton').addClass('hide')
   $('#getgame-buttons').removeClass('hide')
   $('form').trigger('reset')
+  hideMessaging()
 }
 
 const failureMessage = message => {
   $('#message').text(message)
   $('#message').removeClass('success')
   $('#message').addClass('failure')
+  hideMessaging()
 }
 
 const signUpSuccessful = responseData => {
@@ -85,11 +87,12 @@ const signInFailure = () => {
   failureMessage('You have not signed in, please try again.')
 }
 const changePasswordSuccessful = responseData => {
-  successMessage('You have changed your password succesfully')
+  $('#messageSix').text('You have changed your password succesfully')
   $('.cpModal').modal('hide')
+  $('form').trigger('reset')
 }
 const changePasswordFailure = () => {
-  failureMessage('Failed to change password')
+  $('#messageSix').text('Failed to change password')
 }
 const signOutSuccessful = responseData => {
   $('#message').text('You have signed out succesfully')
@@ -133,7 +136,6 @@ const stopClick = function () {
 
 const updateGameSuccessful = (responseData) => {
   store.game = responseData.game
-  $('#message').text('Successfully updated game')
   if (gameOver()) {
     api.updateGame(null, null, true)
       .then()
