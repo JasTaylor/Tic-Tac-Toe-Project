@@ -16,7 +16,7 @@ https://i.imgur.com/NXRNYXm.jpg
 
 ### Unsolved Issues:
 
-* My project is currently only the MVP. I have not added any special features outside of the project requirements to pass. In the future I would love to make the screen more readable when first logging in. It would be nice to have the change password and sign out on a nav bar on the top of the page. I would also have to grid only appear once you click the New Game Button and not upon loggin in like it does currently. The game grid also expands upon expanding your browser, that will need to be fixed. It would also be nice to add some nice CSS features to my grid and make it more appealing in that sense. In addition, I would like to add more to the getGames function to retrieve more than the number of games a player has used. It would be great to add other games to my SPA as well other than Tic Tac Toe.
+* My project is currently only the MVP. I have not added any special features outside of the project requirements to pass. In the future I would love to make the screen more readable when first logging in. It would be nice to have the change password and sign out on a nav bar on the top of the page. The game grid also expands upon expanding your browser, that will need to be fixed. It would also be nice to add some nice CSS features to my grid and make it more appealing in that sense. In addition, I would like to add more to the getGames function to retrieve more than the number of games a player has used. It would be great to add other games to my SPA as well other than Tic Tac Toe.
 
 ### Please See User Stores Below:
 
