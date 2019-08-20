@@ -81,6 +81,8 @@ const signInSuccessful = responseData => {
   $('.myModal').modal('hide')
   $('#guest').addClass('hide')
   $('#cpModal').removeClass('hide')
+  $('#newgame-buttons').trigger('reset')
+  $('.box').trigger('reset')
 }
 
 const signInFailure = () => {
@@ -109,6 +111,7 @@ const signOutSuccessful = responseData => {
   $('#modalButton').removeClass('hide')
   $('#guest').removeClass('hide')
   $('.cpModal').addClass('hide')
+  $('#game').addClass('hide')
   $('form').trigger('reset')
 }
 
