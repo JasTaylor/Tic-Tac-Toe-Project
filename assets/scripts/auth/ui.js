@@ -81,8 +81,6 @@ const signInSuccessful = responseData => {
   $('.myModal').modal('hide')
   $('#guest').addClass('hide')
   $('#cpModal').removeClass('hide')
-  $('#newgame-buttons').trigger('reset')
-  $('.box').trigger('reset')
 }
 
 const signInFailure = () => {
@@ -90,7 +88,6 @@ const signInFailure = () => {
 }
 const changePasswordSuccessful = responseData => {
   $('#messageSix').text('You have changed your password succesfully')
-  $('.cpModal').modal('hide')
   $('form').trigger('reset')
 }
 const changePasswordFailure = () => {
@@ -155,6 +152,7 @@ const getGameSuccessful = (responseData) => {
   const game = responseData.games
   $('#messageFour').text(`NUMBER OF GAMES PLAYED = ${game.length}`)
   $('#messageFour').addClass('getgame')
+  $('#messageFour').removeClass('hide')
 }
 const getGameFailure = (responseData) => {
   const game = responseData.games
