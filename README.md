@@ -1,5 +1,4 @@
-![TTTlogo](https://i.imgur.com/NXRNYXm.jpg)
-
+![alt text](https://i.imgur.com/NXRNYXm.jpg "Logo Title Text 1")
  # **Jasmine's Tic Tac Toe Project**
 
 ### Technologies Used Include:
