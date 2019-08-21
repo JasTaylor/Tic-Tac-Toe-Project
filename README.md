@@ -1,4 +1,4 @@
-https://i.imgur.com/NXRNYXm.jpg
+![TTTlogo](https://i.imgur.com/NXRNYXm.jpg)
 
  # **Jasmine's Tic Tac Toe Project**
 
