@@ -2,12 +2,9 @@
  # **Jasmine's Tic Tac Toe Project**
 
 ### Technologies Used Include:
-#### -HTML
-#### -CSS
-#### -Bootstrap
-#### -Javascript
-#### -Jquery
-#### -AJAX
+#### -HTML        #### -Javascript
+#### -CSS         #### -Jquery
+#### -Bootstrap   #### -AJAX
 
 ### Planning:
 
@@ -17,7 +14,7 @@
 
 * My project is currently only the MVP. I have not added any special features outside of the project requirements to pass. In the future I would love to make the screen more readable when first logging in. It would be nice to have the change password and sign out on a nav bar on the top of the page. The game grid also expands upon expanding your browser, that will need to be fixed. It would also be nice to add some nice CSS features to my grid and make it more appealing in that sense. In addition, I would like to add more to the getGames function to retrieve more than the number of games a player has used. It would be great to add other games to my SPA as well other than Tic Tac Toe.
 
-### Please See User Stores Below:
+### Please See User Stories Below:
 
 1. As a game user, I want to be able to know who won or lost the game so that I know when the game is over.
 2. As a webpage user, I want be able to log out of the game so know one else can play under my email address.
