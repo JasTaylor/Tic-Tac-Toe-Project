@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Tic Tac Toe</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body class="container">
+<div id="banner" class="topOfPage">
+    <img src="https://i.imgur.com/NXRNYXm.jpg" class="img-fluid" alt="title image">
+    <h3 id="message"></h3>
+    <h3 id="messageTwo"></h3>
+    <h2 id="messageThree"></h2>
+  </div>
+
+<!-- SIGN IN & SIGN UP Modal -->
+<div class="front">
+<button id="modalButton" type="button" class="mt-3 mb-2 btn btn-warning" data-toggle="modal" data-target="#exampleModal">
+  Sign-Up / Sign-In
+</button>
+<div class="modal fade myModal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 id="messageSeven"></h6>
+        <h5 class="modal-title" id="exampleModalLabel">Sign-Up & Sign-In</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="sign-in" class="col-md-6">
+          <h4>Sign In</h4>
+          <input class="form-control" type="email" name="credentials[email]" placeholder="Email" autocomplete="email">
+          <input class="form-control" type="password" name="credentials[password]" placeholder="Password" autocomplete="current-password">
+          <button class="btn btn-dark btn-block">Submit</button>
+        </form>
+        <form id="sign-up" class="col-md-6">
+          <h4>Sign Up</h4>
+          <h6 id="messageFive"></h6>
+          <input class="form-control" type="email" name="credentials[email]" placeholder="Email" autocomplete="email">
+          <input class="form-control" type="password" name="credentials[password]" placeholder="Password" autocomplete="current-password">
+          <input class="form-control" type="password" name="credentials[password_confirmation]" placeholder="Confirm Password" autocomplete="current-password">
+          <button class="btn btn-dark btn-block">Submit</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GUEST BUTTON -->
+<!-- Button trigger modal -->
+<div id="guest">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+  Guest Sign-In
+</button>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">You just signed in without signing up!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h6>*please note that game data will reflect ALL guest user stats*</h6>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">OK!</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- CHANGE PASSWORD Modal -->
+<nav class="container row">
+<button type="button" class="btn btn-warning cpModal hide mr-3 mb-2 mt-3" data-toggle="modal" data-target="#cpModal">
+  Reset Password
+</button>
+<!-- Modal -->
+<div class="modal fade" id="cpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cpModalLabel">Reset Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="changePassword">
+          <input class="form-control mb-2" type="password" name="passwords[old]" placeholder="Old Password">
+          <input class="form-control mb-2" type="password" name="passwords[new]" placeholder="New Password">
+          <button class="btn btn-primary" type="submit">Change Password</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Exit</button>
+        </form>
+        <br />
+        <h6 id="messageSix"></h6>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- SIGN OUT button-->
+<form id="sign-out" class="hide">
+  <button type="submit" class="btn btn-danger mr-3 mt-3">Sign Out</button>
+</form>
+<form>
+    <button id="getgame-buttons" class="btn btn-primary hide mr-3 mb-2 mt-3">Get Game Stats</button>
+  </form>
+  <div>
+      <button id="newgame-buttons" class="btn btn-success hide mr-3 mb-2 mt-3">New Game</button>
+    </nav>
+    <h2 id="messageFour"></h2>
+    <form>
+      <div id="game" class="hide">
+          <div class="row">
+              <div class="col-4 box" data-id="0"></div>
+              <div class="col-4 box" data-id="1"></div>
+              <div class="col-4 box" data-id="2"></div>
+              <div class="col-4 box" data-id="3" ></div>
+              <div class="col-4 box" data-id="4"></div>
+              <div class="col-4 box" data-id="5"></div>
+              <div class="col-4 box" data-id="6"></div>
+              <div class="col-4 box" data-id="7"></div>
+              <div class="col-4 box" data-id="8"></div>
+            </div>
+          </div>
+</form>
+</div>
+</body>
+</html>
